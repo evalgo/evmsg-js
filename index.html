@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>evmsg-js</title>
+        <script src="jquery-3.4.1.min.js"></script>
+        <script src="jquery.form.min.js"></script>
+        <script src="jsviews.min.js"></script>
+        <script src="evmsg.js"></script>
+        <script src="evmsg.tmpl.js"></script>
+        <script>
+            $(document).ready(function(){
+                // define data template
+                EVMsg.dataTmpl = "<div>eve:{{for data()}}<h2> hello {^{:hello()}}</h2>{{/for}}</div>";
+                // get the widget config
+                var w = EVMsg.widget().config();
+                // add a template to the config
+                w.templates[0]={name:"evmsg-hello-world", target:"container", tmpl:EVMsg.getMsgTmpl()};
+                // define a data model
+                EVMsg.newDataModel({Data:{getters:["hello"]}});
+                // create a new message with the data model object
+                var msg = EVMsg.newMessage({data:[{hello:""}]})
+                // create a data model instance
+                var d = EVMsg.modelFromMsg(msg)
+                // render the widget with a new data model
+                EVMsg.widget(w).render(d);
+                // do something with the data
+                console.log(d.data()[0].hello("world"));
+            });
+        </script>
+    </head>
+    <body id="container">
+    </body>
+</html>
