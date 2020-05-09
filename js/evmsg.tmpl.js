@@ -19,8 +19,16 @@ EVE.prototype.wdata = {
     data:{}
   }
 };
-EVE.prototype.wdata.config = function(){
-  return (this.options);
+EVE.prototype.wdata.model = {};
+EVE.prototype.wdata.config = function(model){
+	if (model){
+		$.views.viewModels(model,this.model);
+		this.options["model"] = this.model;
+	}
+	return (this.options);
+};
+EVE.prototype.wdata.data = function(data){
+	return this.model.Data.map(data)
 };
 EVE.prototype.wdata.render = function(data){
   $.each(this.options.templates, function(idx,tmpl){

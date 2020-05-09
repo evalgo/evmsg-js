@@ -10,7 +10,7 @@ BSD-1-clause
 - w3css (no license)
 - font awesome (free license)
 
-### usage
+### usage of widget with websocket and messages
 ```
 $(document).ready(function(){
     // define your data specific template
@@ -38,3 +38,12 @@ $(document).ready(function(){
     console.log(d.data()[0].hello("world"));
 });
 ```
+
+### usage of widget without websocket and messages
+```
+var tw = EVMsg.widget().config({Data:{getters:[{getter:"data",type:"Hello"}]},Hello:{getters:["hello"]}});
+tw.templates[0]={name:"evmsg-hello-world", target:"container", tmpl:"<div>{{for data()}}<h2> hello {^{:hello()}}</h2>{{/for}}</div>"};
+EVMsg.widget(tw).render(EVMsg.widget().data({data:[{hello:"world!"}]}));
+
+```
+
