@@ -7,8 +7,6 @@ BSD-1-clause
 - jquery MIT License
 - jsviews MIT License
 - gnu make (GNU GPL)
-- w3css (no license)
-- font awesome (free license)
 
 ### usage of widget with websocket and messages
 ```
